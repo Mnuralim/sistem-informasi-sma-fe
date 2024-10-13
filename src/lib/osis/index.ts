@@ -1,9 +1,7 @@
 import fetcher from '@/utils/fetch'
 
 const getOsis = async () => {
-  const response = await fetcher('/osis', {
-    cache: 'no-store',
-  })
+  const response = await fetcher('/osis')
 
   const resJson = await response.json()
   const data: IOsis[] = resJson.data

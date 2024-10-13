@@ -1,9 +1,7 @@
 import fetcher from '@/utils/fetch'
 
 const getProfile = async () => {
-  const response = await fetcher('/profiles', {
-    cache: 'no-store',
-  })
+  const response = await fetcher('/profiles')
 
   const resJson = await response.json()
   const data: IProfile = resJson.data

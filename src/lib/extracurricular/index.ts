@@ -1,9 +1,7 @@
 import fetcher from '@/utils/fetch'
 
 const getExtracurricular = async () => {
-  const response = await fetcher('/extracurriculars', {
-    cache: 'no-store',
-  })
+  const response = await fetcher('/extracurriculars')
 
   const resJson = await response.json()
   const data: IExtracurricular[] = resJson.data

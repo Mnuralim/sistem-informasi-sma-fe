@@ -1,9 +1,7 @@
 import fetcher from '@/utils/fetch'
 
 const getStudents = async () => {
-  const response = await fetcher('/students', {
-    cache: 'no-store',
-  })
+  const response = await fetcher('/students')
 
   const resJson = await response.json()
   const data: IStudent[] = resJson.data
@@ -46,9 +44,7 @@ const deleteStudent = async (id: string, accessToken: string) => {
 }
 
 const getAllGrades = async () => {
-  const response = await fetcher('/students/grades', {
-    cache: 'default',
-  })
+  const response = await fetcher('/students/grades')
   const resJson = await response.json()
   const data: IGrade[] = resJson.data
   return data

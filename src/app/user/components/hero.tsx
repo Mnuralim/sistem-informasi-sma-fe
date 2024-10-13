@@ -8,6 +8,11 @@ interface Props {
 }
 
 export default function Hero({ logo, name, tagline }: Props) {
+  const words = name.split(' ')
+  words.pop()
+  const noLastWord = words.join(' ')
+  const lastWord = name.split(' ')[name.length - 1]
+
   return (
     <section
       className={`overflow-hidden relative select-none pt-10 text-white bg-[linear-gradient(270deg,#202244_0.25%,#0B49B4_85.39%)] px-[5vw] md:px-[10vw] `}
@@ -21,27 +26,17 @@ export default function Hero({ logo, name, tagline }: Props) {
         }}
       />
       <div className="relative flex flex-col-reverse items-center mx-auto max-w-7xl md:grid md:grid-cols-2 md:items-end">
-        {/* <Image
-          alt="Hero Vector"
-          className="absolute -top-56 md:-top-[350px] md:-left-[350px] 2xl:-left-[100px] w-[1000px] h-[1000px]"
-          draggable={false}
-          height={0}
-          priority={true}
-          src={'/img/hero-vector.svg'}
-          width={0}
-        /> */}
         <div className="z-10 flex flex-col justify-center max-w-md gap-2 pb-16">
           <h2 className="text-sm lg:text-base font-bold rounded-full px-3 py-2 text-center w-full md:w-fit bg-[rgba(255,255,255,0.1)]">
             Terakreditasi A
           </h2>
           <h2 className="text-2xl font-extrabold leading-tight sm:leading-snug lg:leading-normal md:text-3xl lg:text-4xl">
-            SMA NEGERI 2
+            {noLastWord}
             <br />
-            <span>LOREM</span>
+            <span>{lastWord}</span>
           </h2>
           <p className="my-2 font-medium text-[#D5DFF1]">
-            Selamat datang di SMA Negeri 2 Lorem, kami menyediakan pendidikan terbaik untuk anak-anak dengan slogan{' '}
-            {tagline}.
+            Selamat datang di {name}, kami menyediakan pendidikan terbaik untuk anak-anak dengan slogan {tagline}.
           </p>
           <div className="flex justify-center gap-5 text-center md:justify-normal">
             <Link

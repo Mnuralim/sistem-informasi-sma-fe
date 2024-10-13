@@ -1,9 +1,7 @@
 import fetcher from '@/utils/fetch'
 
 const getFinanceReport = async () => {
-  const response = await fetcher('/finance-reports', {
-    cache: 'no-store',
-  })
+  const response = await fetcher('/finance-reports')
 
   const resJson = await response.json()
   const data: IFinanceReports[] = resJson.data

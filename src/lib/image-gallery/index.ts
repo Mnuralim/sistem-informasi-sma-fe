@@ -1,9 +1,7 @@
 import fetcher from '@/utils/fetch'
 
 const getAllImageGallery = async () => {
-  const response = await fetcher('/images-gallery', {
-    cache: 'no-store',
-  })
+  const response = await fetcher('/images-gallery')
 
   const resJson = await response.json()
   const data: IImageGallery[] = resJson.data

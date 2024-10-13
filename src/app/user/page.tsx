@@ -28,7 +28,7 @@ const Page = async () => {
     <main className="flex flex-col gap-12 lg:gap-20">
       <Hero name={profile.name} tagline={profile.tagline} logo={profile.imageUrl} />
       <Slider sliders={sliders} />
-      <PrincipalSpeech welcomeMessage={welcomeMessage} />
+      {welcomeMessage && <PrincipalSpeech welcomeMessage={welcomeMessage} />}
       <Vision vision={profile.vision} />
       <Mission mission={profile.mission} />
       <News news={news} />

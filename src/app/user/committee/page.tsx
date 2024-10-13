@@ -5,6 +5,10 @@ import React from 'react'
 const Page = async () => {
   const welcomeMessage = await getWelcomeMessage('committee')
 
+  if (!welcomeMessage) {
+    return <div>Not found</div>
+  }
+
   return (
     <section className="py-16 mb-40">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

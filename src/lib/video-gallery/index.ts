@@ -1,9 +1,7 @@
 import fetcher from '@/utils/fetch'
 
 const getAllVideoGallery = async () => {
-  const response = await fetcher('/videos-gallery', {
-    cache: 'no-store',
-  })
+  const response = await fetcher('/videos-gallery')
 
   const resJson = await response.json()
   const data: IVideoGallery[] = resJson.data

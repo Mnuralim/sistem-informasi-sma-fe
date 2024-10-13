@@ -7,9 +7,7 @@ const getTeacher = async (query?: string) => {
   } else {
     url = `/teacher`
   }
-  const response = await fetcher(url, {
-    cache: 'no-store',
-  })
+  const response = await fetcher(url)
 
   const resJson = await response.json()
   const data: ITeacher[] = resJson.data

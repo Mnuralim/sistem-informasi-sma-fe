@@ -1,9 +1,7 @@
 import fetcher from '@/utils/fetch'
 
 const getWelcomeMessage = async (type: string) => {
-  const response = await fetcher(`/welcome-message/${type}`, {
-    cache: 'no-store',
-  })
+  const response = await fetcher(`/welcome-message/${type}`)
 
   const resJson = await response.json()
   const data: IWelcomeMessage = resJson.data

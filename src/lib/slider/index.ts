@@ -1,9 +1,7 @@
 import fetcher from '@/utils/fetch'
 
 const getSliders = async () => {
-  const response = await fetcher('/sliders', {
-    cache: 'no-store',
-  })
+  const response = await fetcher('/sliders')
 
   const resJson = await response.json()
   const data: ISlider[] = resJson.data

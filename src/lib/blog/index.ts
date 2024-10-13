@@ -1,9 +1,7 @@
 import fetcher from '@/utils/fetch'
 
 const getBlog = async () => {
-  const response = await fetcher('/blogs', {
-    cache: 'no-store',
-  })
+  const response = await fetcher('/blogs')
 
   const resJson = await response.json()
   const data: IBlog[] = resJson.data
@@ -11,9 +9,7 @@ const getBlog = async () => {
 }
 
 const getBlogById = async (id: string) => {
-  const response = await fetcher(`/blogs/${id}`, {
-    cache: 'no-store',
-  })
+  const response = await fetcher(`/blogs/${id}`)
 
   const resJson = await response.json()
   const data: IBlog | null = resJson.data || null

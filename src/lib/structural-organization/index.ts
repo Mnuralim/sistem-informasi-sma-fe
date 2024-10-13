@@ -1,9 +1,7 @@
 import fetcher from '@/utils/fetch'
 
 const getStructuralOrganization = async () => {
-  const response = await fetcher('/structural-organization', {
-    cache: 'no-store',
-  })
+  const response = await fetcher('/structural-organization')
 
   const resJson = await response.json()
   const data: IStructuralOrganization = resJson.data

@@ -1,9 +1,7 @@
 import fetcher from '@/utils/fetch'
 
 const getHistory = async () => {
-  const response = await fetcher('/history', {
-    cache: 'no-store',
-  })
+  const response = await fetcher('/history')
 
   const resJson = await response.json()
   const data: IHistory = resJson.data

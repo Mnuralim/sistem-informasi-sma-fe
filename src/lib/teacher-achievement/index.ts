@@ -1,9 +1,7 @@
 import fetcher from '@/utils/fetch'
 
 const getAchievements = async () => {
-  const response = await fetcher('/teacher-achievements', {
-    cache: 'no-store',
-  })
+  const response = await fetcher('/teacher-achievements')
 
   const resJson = await response.json()
   const data: ITeacherAchievement[] = resJson.data

@@ -1,9 +1,7 @@
 import fetcher from '@/utils/fetch'
 
 const getStaff = async () => {
-  const response = await fetcher('/staff', {
-    cache: 'no-store',
-  })
+  const response = await fetcher('/staff')
 
   const resJson = await response.json()
   const data: IStaff[] = resJson.data

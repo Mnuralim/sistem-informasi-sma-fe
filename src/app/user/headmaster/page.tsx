@@ -4,6 +4,9 @@ import React from 'react'
 
 const Page = async () => {
   const welcomeMessage = await getWelcomeMessage('headmaster')
+  if (!welcomeMessage) {
+    return <div>Not found</div>
+  }
   return (
     <section className="bg-gray-50 py-16">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -25,7 +28,7 @@ const Page = async () => {
             <div
               className="text-gray-700 leading-relaxed"
               dangerouslySetInnerHTML={{
-                __html: welcomeMessage.message,
+                __html: welcomeMessage?.message,
               }}
             ></div>
             <p className="mt-4 text-lg text-gray-700 leading-relaxed text-center md:text-left">

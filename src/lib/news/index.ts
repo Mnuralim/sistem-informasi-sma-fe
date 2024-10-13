@@ -1,9 +1,7 @@
 import fetcher from '@/utils/fetch'
 
 const getAllNews = async () => {
-  const response = await fetcher('/news', {
-    cache: 'no-store',
-  })
+  const response = await fetcher('/news')
 
   const resJson = await response.json()
   const data: INews[] = resJson.data
@@ -11,9 +9,7 @@ const getAllNews = async () => {
 }
 
 const getNewsBySlug = async (slug: string) => {
-  const response = await fetcher(`/news/${slug}`, {
-    cache: 'no-store',
-  })
+  const response = await fetcher(`/news/${slug}`)
 
   const resJson = await response.json()
   const data: INews = resJson.data
