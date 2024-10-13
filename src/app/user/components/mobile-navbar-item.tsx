@@ -12,24 +12,24 @@ interface MobileNavbarItemProps {
   link: string | null
   subdata: Subdata[]
   handleRedirect: (path: string | null) => void
-  setShowNavabar: React.Dispatch<React.SetStateAction<boolean>>
+  handleCloseNavbar: () => void
 }
 
-const MobileNavbarItem = ({ title, link, subdata, handleRedirect, setShowNavabar }: MobileNavbarItemProps) => (
+const MobileNavbarItem = ({ title, link, subdata, handleRedirect, handleCloseNavbar }: MobileNavbarItemProps) => (
   <Disclosure as="div" className="py-1" defaultOpen={false} onClick={() => handleRedirect(link)}>
-    <DisclosureButton className="group flex w-full items-center justify-between">
-      <span className="text-sm/6 font-semibold text-black-primary">{title}</span>
+    <DisclosureButton className="group hover:text-orange-05 hover:bg-orange-05/10 py-3 px-3 flex w-full items-center justify-between rounded-md">
+      <span className="text-sm font-semibold ">{title}</span>
       {link === null && <IoChevronDownSharp className="size-5 fill-black/60 group-open:rotate-180" />}
     </DisclosureButton>
-    <DisclosurePanel className="mt-2 text-sm/5 text-black/50">
+    <DisclosurePanel className="mt-2 text-sm">
       {subdata.map((subdataItem, index) => (
         <Link
           key={index}
-          className="block rounded-lg py-2 px-3 transition hover:bg-gray-100"
+          className="block px-8 hover:text-orange-05 hover:bg-orange-05/10 rounded-md py-2  transition "
           href={subdataItem.link}
-          onClick={() => setShowNavabar(false)}
+          onClick={handleCloseNavbar}
         >
-          <p className="text-black-secondary">{subdataItem.title}</p>
+          <p>{subdataItem.title}</p>
         </Link>
       ))}
     </DisclosurePanel>

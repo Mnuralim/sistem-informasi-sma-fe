@@ -1,21 +1,30 @@
 import React from 'react'
+import Image from 'next/image'
 
-const Mission = () => {
+interface Props {
+  mission: string
+}
+
+const Mission = ({ mission }: Props) => {
+  const items = mission.split('\n')
   return (
-    <section className="py-10 lg:py-20 px-5 lg:px-0 bg-white">
-      <div className="grid lg:grid-cols-2 gap-y-10 gap-x-14 items-center w-full max-w-7xl mx-auto">
-        <div
-          className="w-full mx-auto h-auto bg-no-repeat bg-center bg-cover aspect-square lg:aspect-[10/7] rounded-lg shadow-lg overflow-hidden lg:order-2"
-          style={{
-            backgroundImage: `url('/img/misi.png')`,
-          }}
-        ></div>
-        <div className="lg:pl-10 text-center lg:text-left space-y-5 lg:order-1">
-          <h1 className="text-orange-05 font-bold text-3xl lg:text-5xl">Misi Sekolah</h1>
-          <p className="text-black-secondary font-medium text-base lg:text-lg leading-relaxed">
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Laborum temporibus dolor ipsam beatae nihil quod,
-            dicta cupiditate autem officiis harum? Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sint, quis.
-          </p>
+    <section className="py-10 lg:py-20 px-5 lg:px-0 bg-[#f9f9fa]">
+      <div className="w-full max-w-7xl mx-auto">
+        <h1 className="text-orange-05 text-center font-bold text-2xl lg:text-3xl transition-opacity duration-300 ease-in-out">
+          Misi SMA Negeri 2 Lorem
+        </h1>
+        <div className="grid lg:grid-cols-2 gap-5 mt-5">
+          {items.map((item, index) => (
+            <figure
+              key={index}
+              className="flex items-start bg-white gap-5 p-7 sm:flex-wrap lg:flex-nowrap aspect-auto shadow-1 rounded-3xl"
+            >
+              <div className="w-12 h-12 aspect-square bg-[#FF9F40] rounded-2xl text-xl flex items-center justify-center font-bold text-white">
+                {index + 1}
+              </div>
+              <p data-cy="misi-content">{item}</p>
+            </figure>
+          ))}
         </div>
       </div>
     </section>

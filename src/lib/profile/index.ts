@@ -10,45 +10,14 @@ const getProfile = async () => {
   return data
 }
 
-const updateProfile = async (body: IProfile, accessToken: string) => {
-  const {
-    address,
-    city,
-    email,
-    facebook,
-    instagram,
-    mapsLink,
-    mobile,
-    name,
-    postCode,
-    province,
-    subdistrict,
-    tagline,
-    village,
-    youtube,
-  } = body
+const updateProfile = async (body: any, accessToken: string) => {
   const response = await fetcher('/profiles/update-profile', {
     method: 'PATCH',
     headers: {
       'Content-Type': 'application/json',
       Authorization: `Bearer ${accessToken}`,
     },
-    body: JSON.stringify({
-      address,
-      city,
-      email,
-      facebook,
-      instagram,
-      mapsLink,
-      mobile,
-      name,
-      postCode,
-      province,
-      subdistrict,
-      tagline,
-      village,
-      youtube,
-    }),
+    body: JSON.stringify(body),
   })
 
   return response

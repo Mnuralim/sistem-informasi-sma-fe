@@ -3,6 +3,8 @@ import Tab from './components/tab'
 import PhotoItem from './components/photo-item'
 import Modal from './components/modal'
 import VideoItem from './components/video-item'
+import { getAllImageGallery } from '@/lib/image-gallery'
+import { getAllVideoGallery } from '@/lib/video-gallery'
 
 interface Props {
   searchParams: {
@@ -10,19 +12,8 @@ interface Props {
   }
 }
 
-const photos = [
-  { src: '/img/misi.png', title: 'Foto 1' },
-  { src: '/img/visi.png', title: 'Foto 2' },
-  { src: '/img/slide1.jpg', title: 'Foto 3' },
-  { src: '/img/misi.png', title: 'Foto 4' },
-]
-
-const videos = [
-  { src: '/video/example.mp4', title: 'Video 1' },
-  { src: '/video/example.mp4', title: 'Video 2' },
-]
-
-const GalleryPage = ({ searchParams }: Props) => {
+const GalleryPage = async ({ searchParams }: Props) => {
+  const [images, videos] = await Promise.all([getAllImageGallery(), getAllVideoGallery()])
   const activeTab = searchParams.type
   return (
     <section className="bg-gray-100 py-12">
@@ -37,21 +28,21 @@ const GalleryPage = ({ searchParams }: Props) => {
         <div>
           {activeTab === 'photos' && (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-              {photos.map((photo, index) => (
-                <PhotoItem key={index} src={photo.src} title={photo.title} index={index + 1} />
+              {images.map((photo, index) => (
+                <PhotoItem key={index} src={photo.url} title={photo.title} index={index + 1} />
               ))}
             </div>
           )}
           {activeTab === 'videos' && (
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3  gap-8">
               {videos.map((video, index) => (
-                <VideoItem key={index} {...video} />
+                <VideoItem key={index} video={video} />
               ))}
             </div>
           )}
         </div>
       </div>
-      <Modal photos={photos} />
+      <Modal photos={images} />
     </section>
   )
 }

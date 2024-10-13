@@ -1,4 +1,3 @@
-// pages/news/[id].js
 import React from 'react'
 import NewsDetail from './components/news-detail'
 import Link from 'next/link'
@@ -13,7 +12,7 @@ interface Props {
 
 const Page = async ({ params }: Props) => {
   const [news, allNews] = await Promise.all([getNewsBySlug(params.slug), getAllNews()])
-  const otherNews = allNews.filter((n) => n.slug !== params.slug)
+  const otherNews = allNews.filter((n) => n.id !== news?.id)
 
   if (!news) {
     return <p>Berita tidak ditemukan</p>

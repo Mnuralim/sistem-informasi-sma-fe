@@ -1,80 +1,151 @@
 'use client'
-import { usePathname, useRouter } from 'next/navigation'
+import { usePathname } from 'next/navigation'
 import { useState } from 'react'
-import { IoIosArrowDown, IoMdLogOut } from 'react-icons/io'
+import { IoIosArrowDown, IoMdLogOut, IoMdClose, IoMdGlobe } from 'react-icons/io'
 import { FaInfoCircle, FaPhone } from 'react-icons/fa'
 import { AiOutlineHome } from 'react-icons/ai'
 import Image from 'next/image'
-import { IoMdClose } from 'react-icons/io'
 import { Disclosure, DisclosureButton, DisclosurePanel } from '@headlessui/react'
-import { IoMdGlobe } from 'react-icons/io'
 import { RxHamburgerMenu } from 'react-icons/rx'
+import Link from 'next/link'
+import { LuFolder } from 'react-icons/lu'
 
-const sideBarItems = [
+interface SubItem {
+  name: string
+  path: string
+  icon: React.ElementType
+}
+
+interface SidebarItem {
+  name: string
+  icon: React.ElementType
+  subitems: SubItem[]
+  path: string | null
+}
+
+const sideBarItems: SidebarItem[] = [
   {
     name: 'Beranda',
-    icon: <AiOutlineHome className="text-xl md:text-2xl lg:text-3xl" />,
+    icon: AiOutlineHome,
     subitems: [],
     path: '/admin/home',
   },
   {
     name: 'Tampilan Web Utama',
-    icon: <IoMdGlobe className="text-xl md:text-2xl lg:text-3xl" />,
+    icon: IoMdGlobe,
     subitems: [
-      { name: 'Profile Sekolah', path: '/admin/profile', icons: <FaInfoCircle className="text-lg md:text-xl" /> },
-      { name: 'Slider Beranda', path: '/admin/slider', icons: <FaInfoCircle className="text-lg md:text-xl" /> },
-      { name: 'Berita', path: '/admin/news', icons: <FaInfoCircle className="text-lg md:text-xl" /> },
-      { name: 'Sejarah', path: '/admin/history', icons: <FaPhone className="text-lg md:text-xl" /> },
-      { name: 'Visi dan Misi', path: '/admin/vision-mission', icons: <FaPhone className="text-lg md:text-xl" /> },
-      { name: 'Struktur Organisasi', path: '/admin/organization', icons: <FaPhone className="text-lg md:text-xl" /> },
-      { name: 'Sambutan Kepala Sekolah', path: '/admin/headmaster', icons: <FaPhone className="text-lg md:text-xl" /> },
-      { name: 'Sambutan Komite Sekolah', path: '/admin/committee', icons: <FaPhone className="text-lg md:text-xl" /> },
-      { name: 'Foto', path: '/admin/image', icons: <FaPhone className="text-lg md:text-xl" /> },
-      { name: 'Video', path: '/admin/video', icons: <FaPhone className="text-lg md:text-xl" /> },
-      { name: 'Laporan Keuangan', path: '/admin/finance-report', icons: <FaPhone className="text-lg md:text-xl" /> },
-      { name: 'Ekstrakurikuler', path: '/admin/extracurriculars', icons: <FaPhone className="text-lg md:text-xl" /> },
-      { name: 'Prestasi Siswa', path: '/admin/student-achievement', icons: <FaPhone className="text-lg md:text-xl" /> },
-      { name: 'OSIS', path: '/admin/osis', icons: <FaPhone className="text-lg md:text-xl" /> },
-      { name: 'Daftar Guru', path: '/admin/teacher', icons: <FaPhone className="text-lg md:text-xl" /> },
-      { name: 'Daftar Staff Tata Usaha', path: '/admin/staff', icons: <FaPhone className="text-lg md:text-xl" /> },
-      {
-        name: 'Prestasi Guru dan Karyawan',
-        path: '/admin/achievement',
-        icons: <FaPhone className="text-lg md:text-xl" />,
-      },
-      { name: 'Blog', path: '/admin/blog', icons: <FaPhone className="text-lg md:text-xl" /> },
+      { name: 'Profile Sekolah', path: '/admin/main-web/profile', icon: FaInfoCircle },
+      { name: 'Slider Beranda', path: '/admin/main-web/slider', icon: FaInfoCircle },
+      { name: 'Berita', path: '/admin/main-web/news', icon: FaInfoCircle },
+      { name: 'Sejarah', path: '/admin/main-web/history', icon: FaPhone },
+      { name: 'Visi dan Misi', path: '/admin/main-web/vision-mission', icon: FaPhone },
+      { name: 'Struktur Organisasi', path: '/admin/main-web/organization', icon: FaPhone },
+      { name: 'Kepala Sekolah', path: '/admin/main-web/principal', icon: FaPhone },
+      { name: 'Komite Sekolah', path: '/admin/main-web/school-committee', icon: FaPhone },
+      { name: 'Sambutan Kepala Sekolah', path: '/admin/main-web/headmaster', icon: FaPhone },
+      { name: 'Sambutan Komite Sekolah', path: '/admin/main-web/committee', icon: FaPhone },
+      { name: 'Foto', path: '/admin/main-web/image', icon: FaPhone },
+      { name: 'Video', path: '/admin/main-web/video', icon: FaPhone },
+      { name: 'Laporan Keuangan', path: '/admin/main-web/finance-report', icon: FaPhone },
+      { name: 'Ekstrakurikuler', path: '/admin/main-web/extracurriculars', icon: FaPhone },
+      { name: 'Prestasi Siswa', path: '/admin/main-web/student-achievement', icon: FaPhone },
+      { name: 'OSIS', path: '/admin/main-web/osis', icon: FaPhone },
+      { name: 'Prestasi Guru dan Karyawan', path: '/admin/main-web/teacher-achievement', icon: FaPhone },
+      { name: 'Blog', path: '/admin/main-web/blog', icon: FaPhone },
+    ],
+    path: null,
+  },
+  {
+    name: 'Data',
+    icon: LuFolder,
+    subitems: [
+      { name: 'Daftar Siswa', path: '/admin/data/students', icon: FaPhone },
+      { name: 'Daftar Guru', path: '/admin/data/teacher', icon: FaPhone },
+      { name: 'Daftar Staff Tata Usaha', path: '/admin/data/staff', icon: FaPhone },
     ],
     path: null,
   },
 ]
 
-const Sidebar = () => {
+const isActivePath = (path: string | null, pathname: string, subitems: SubItem[] = []): boolean => {
+  const normalize = (str: string | null) => (str ? str.replace(/\/+$/, '').toLowerCase() : '')
+  return (
+    normalize(pathname) === normalize(path) ||
+    subitems.some((subitem) => normalize(pathname) === normalize(subitem.path))
+  )
+}
+
+const Sidebar = (): JSX.Element | null => {
   const [expandView, setExpandView] = useState<boolean>(false)
-  const router = useRouter()
   const pathname = usePathname()
 
-  const handleNavigation = (path: string) => {
-    router.push(path)
-    if (window.innerWidth < 768) {
-      setExpandView(false)
-    }
+  const handleNavigation = (): void => {
+    if (window.innerWidth < 768) setExpandView(false)
   }
 
-  const isActivePath = (path: string) => {
-    const normalizedPathname = pathname.endsWith('/') ? pathname : `${pathname}/`
-    const normalizedPath = path.endsWith('/') ? path : `${path}/`
-    return normalizedPathname === normalizedPath || normalizedPathname.startsWith(normalizedPath)
-  }
+  if (pathname === '/admin/login') return null
 
-  if (pathname === '/admin/login') {
-    return null
+  const renderSidebarItem = (item: SidebarItem): JSX.Element => {
+    const isActive = isActivePath(item.path, pathname, item.subitems)
+    return (
+      <Disclosure key={item.name}>
+        {({ open }) => (
+          <>
+            <DisclosureButton
+              as={item.path ? Link : 'button'}
+              //@ts-ignore
+              href={item.path ? item.path : '#'}
+              className={`flex items-center w-full hover:bg-orange-05/10 hover:text-orange-05 ${
+                expandView ? 'py-3 px-3 justify-between' : 'w-fit p-3 justify-center lg:justify-between '
+              } ${isActive ? 'bg-orange-05/10 text-orange-05' : ''}`}
+              onClick={() => (item.path ? handleNavigation() : setExpandView(true))}
+            >
+              <div className="flex items-center gap-2">
+                <item.icon className="text-xl md:text-2xl lg:text-3xl" />
+                <p className={`text-xs md:text-sm lg:text-base font-bold ${expandView ? 'block' : 'hidden lg:block'}`}>
+                  {item.name}
+                </p>
+              </div>
+              {item.subitems.length > 0 && expandView && (
+                <IoIosArrowDown
+                  className={`transform transition-transform duration-300 ${open ? 'rotate-180' : 'rotate-0'}`}
+                  size={22}
+                />
+              )}
+            </DisclosureButton>
+
+            <DisclosurePanel
+              transition
+              className={`origin-top transition duration-200 ease-out data-[closed]:-translate-y-6 data-[closed]:opacity-0`}
+            >
+              {expandView ? (
+                <div className={`flex flex-col items-start mx-5 ${item.subitems.length !== 0 ? 'mt-5' : ''}`}>
+                  {item.subitems.map((sub) => (
+                    <Link
+                      href={sub.path}
+                      key={sub.name}
+                      onClick={handleNavigation}
+                      className={`py-2 w-full text-xs md:text-sm lg:text-base text-start rounded pl-3 hover:bg-orange-05/10 hover:text-orange-05 ${
+                        isActivePath(sub.path, pathname) ? 'bg-orange-05/10 text-orange-05' : ''
+                      }`}
+                    >
+                      {sub.name}
+                    </Link>
+                  ))}
+                </div>
+              ) : null}
+            </DisclosurePanel>
+          </>
+        )}
+      </Disclosure>
+    )
   }
 
   return (
     <aside
-      className={`fixed z-40 left-0 h-screen bg-dark-blue transition-all transform ease-linear duration-200 no-scrollbar overflow-y-auto ${
+      className={`fixed z-40 left-0 h-screen bg-dark-blue transition-all no-scrollbar ${
         expandView ? 'w-4/5 md:w-3/5 lg:w-1/5' : 'w-[12.666667%] lg:w-1/5'
-      }`}
+      } overflow-y-auto`}
     >
       <div className="mt-5 h-full flex flex-col justify-between">
         <div>
@@ -86,87 +157,27 @@ const Sidebar = () => {
                 width={500}
                 height={500}
                 alt="logo"
-                src={'/img/logo.png'}
+                src="/img/logo.png"
                 className="aspect-square rounded-full w-10 h-10 md:w-14 md:h-14 lg:w-16 lg:h-16"
               />
               <h1 className="text-xs md:text-sm lg:text-base text-orange-05 font-semibold">SMA Negeri 2 Lorem</h1>
             </div>
-            <div className="lg:hidden">
-              <button onClick={() => setExpandView((prev) => !prev)} className="text-white bg-orange-05 p-2">
-                {expandView ? (
-                  <IoMdClose className="text-lg md:text-xl lg:text-2xl" />
-                ) : (
-                  <RxHamburgerMenu className="text-lg md:text-xl lg:text-2xl" />
-                )}
-              </button>
-            </div>
+            <button onClick={() => setExpandView(!expandView)} className="lg:hidden text-white bg-orange-05 p-2">
+              {expandView ? (
+                <IoMdClose className="text-lg md:text-xl lg:text-2xl" />
+              ) : (
+                <RxHamburgerMenu className="text-lg md:text-xl lg:text-2xl" />
+              )}
+            </button>
           </div>
-          <div className={`mt-10 text-white ${expandView ? '' : 'flex justify-between items-center flex-col'}`}>
-            {sideBarItems.map((item) => (
-              <Disclosure key={item.name}>
-                <>
-                  <DisclosureButton
-                    className={`flex items-center w-full ${
-                      expandView ? 'w-full py-3 px-3 justify-between' : 'w-fit p-3 justify-center lg:justify-between'
-                    } ${isActivePath(item.path || '') ? 'bg-orange-05' : ''}`}
-                    onClick={() => {
-                      if (item.path) {
-                        handleNavigation(item.path)
-                      } else {
-                        setExpandView(true)
-                      }
-                    }}
-                  >
-                    <div className="flex items-center gap-2">
-                      {item.icon}
-                      <p
-                        className={`text-xs md:text-sm lg:text-base font-bold line-clamp-1 ${
-                          expandView ? 'block' : 'hidden lg:block'
-                        }`}
-                      >
-                        {item.name}
-                      </p>
-                    </div>
-                    <IoIosArrowDown
-                      size={22}
-                      className={`${expandView && item.subitems.length !== 0 ? 'block' : 'hidden'}`}
-                    />
-                  </DisclosureButton>
-                  {expandView ? (
-                    <DisclosurePanel
-                      transition
-                      className={
-                        'flex flex-col items-start origin-top transition duration-200 ease-out data-[closed]:-translate-y-6 data-[closed]:opacity-0'
-                      }
-                    >
-                      {item.subitems.map((sub) => (
-                        <button
-                          key={sub.name}
-                          onClick={() => handleNavigation(sub.path)}
-                          className={`py-2 w-full text-xs md:text-sm lg:text-base text-start pl-[42px] ${
-                            isActivePath(sub.path) ? 'bg-orange-05' : ''
-                          }`}
-                        >
-                          {sub.name}
-                        </button>
-                      ))}
-                    </DisclosurePanel>
-                  ) : null}
-                </>
-              </Disclosure>
-            ))}
+          <div className={`mt-10 text-white ${expandView ? '' : 'flex flex-col items-center'}`}>
+            {sideBarItems.map(renderSidebarItem)}
           </div>
         </div>
-        <div
-          className={`mt-10 text-white pb-24 lg:pb-16 ${
-            expandView ? 'px-3' : 'flex justify-between items-center flex-col lg:items-baseline lg:px-3'
-          }`}
-        >
-          <button className="flex items-center gap-2">
+        <div className="mt-10 text-white pb-24 lg:pb-16">
+          <button className="flex items-center gap-2 px-3">
             <IoMdLogOut className="text-lg md:text-xl lg:text-2xl" />
-            <span className={`text-xs md:text-sm lg:text-base font-bold ${expandView ? 'block' : 'hidden lg:block'}`}>
-              Logout
-            </span>
+            {expandView && <span className="text-xs md:text-sm lg:text-base font-bold">Logout</span>}
           </button>
         </div>
       </div>

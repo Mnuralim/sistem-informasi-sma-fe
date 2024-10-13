@@ -1,36 +1,9 @@
-// pages/extracurriculars.tsx
 import React from 'react'
 import Extracurricular from './components/extracurricular'
+import { getExtracurricular } from '@/lib/extracurricular'
 
-const extracurriculars = [
-  {
-    name: 'Paskibra',
-    description: 'Paskibra adalah kegiatan ekstrakurikuler yang bergerak di bidang pengibaran bendera.',
-    photo: '/img/misi.png',
-  },
-  {
-    name: 'Pramuka',
-    description: 'Pramuka adalah organisasi pendidikan yang fokus pada pembentukan karakter dan keterampilan.',
-    photo: '/img/misi.png',
-  },
-  {
-    name: 'KIR (Karya Ilmiah Remaja)',
-    description: 'KIR adalah kegiatan ekstrakurikuler yang mengembangkan minat siswa dalam bidang penelitian ilmiah.',
-    photo: '/img/misi.png',
-  },
-  {
-    name: 'PMR (Palang Merah Remaja)',
-    description: 'PMR adalah kegiatan ekstrakurikuler yang bergerak di bidang kesehatan dan kemanusiaan.',
-    photo: '/img/misi.png',
-  },
-  {
-    name: 'Basket',
-    description: 'Ekstrakurikuler basket untuk mengembangkan kemampuan siswa dalam bermain bola basket.',
-    photo: '/img/misi.png',
-  },
-]
-
-const ExtracurricularsPage: React.FC = () => {
+const ExtracurricularsPage = async () => {
+  const extracurriculars = await getExtracurricular()
   return (
     <section className="bg-gray-50 py-12">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -46,7 +19,7 @@ const ExtracurricularsPage: React.FC = () => {
               key={index}
               name={activity.name}
               description={activity.description}
-              photo={activity.photo}
+              imageUrl={activity.imageUrl}
             />
           ))}
         </div>

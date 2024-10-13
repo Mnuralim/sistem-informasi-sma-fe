@@ -1,51 +1,55 @@
 import { Popover, PopoverButton, PopoverPanel } from '@headlessui/react'
 import Link from 'next/link'
+import DropdownNavbar from './dropdown-navbar'
+import { useState } from 'react'
+import { FaChevronDown, FaChevronUp } from 'react-icons/fa'
 
-interface Subdata {
-  title: string
-  link: string
-}
+type Data =
+  | {
+      title: string
+      subdata: never[]
+      link: string
+    }
+  | {
+      title: string
+      subdata: {
+        title: string
+        link: string
+      }[]
+      link: null
+    }
 
 interface NavbarItemProps {
-  title: string
-  link: string | null
-  subdata: Subdata[]
+  data: Data[]
   handleRedirect: (path: string | null) => void
 }
 
-const NavbarItem = ({ title, link, subdata, handleRedirect }: NavbarItemProps) => (
-  <Popover>
-    {({ close }) => (
-      <>
-        <PopoverButton
-          onClick={() => handleRedirect(link)}
-          className="block text-sm/6 font-semibold text-black-primary focus:outline-none"
-        >
-          {title}
-        </PopoverButton>
-        {subdata.length > 0 && (
-          <PopoverPanel
-            transition
-            anchor="bottom"
-            className="divide-y z-[100] divide-white/5 rounded-xl bg-white shadow text-sm/6 transition duration-200 ease-in-out"
-          >
-            <div className="p-3">
-              {subdata.map((subdataItem, index) => (
-                <Link
-                  key={index}
-                  className="block rounded-lg py-2 px-3 transition hover:bg-gray-100"
-                  href={subdataItem.link}
-                  onClick={close}
-                >
-                  <p className="font-semibold text-black-secondary">{subdataItem.title}</p>
-                </Link>
-              ))}
-            </div>
-          </PopoverPanel>
-        )}
-      </>
-    )}
-  </Popover>
-)
+const NavbarItem = ({ data, handleRedirect }: NavbarItemProps) => {
+  const [openDropdown, setOpenDropdown] = useState<boolean>(false)
+  return (
+    <div className="flex justify-between items-center w-full">
+      {data.map((item, index) => (
+        <div key={index}>
+          {item.subdata.length === 0 ? (
+            <Link
+              href={item.link!}
+              className="font-semibold py-2 px-3 text-black-primary focus:outline-none rounded-md hover:text-orange-05 hover:bg-orange-05/10 "
+            >
+              {item.title}
+            </Link>
+          ) : (
+            <DropdownNavbar isOpen={openDropdown} subData={item.subdata}>
+              <button className="py-2 px-3 font-semibold text-black-primary focus:outline-none rounded-md hover:text-orange-05 hover:bg-orange-05/10 flex items-center gap-1">
+                {item.title}
+                <FaChevronDown className={`min-w-fit group-hover:hidden`} />
+                <FaChevronUp className={`min-w-fit hidden group-hover:inline`} />
+              </button>
+            </DropdownNavbar>
+          )}
+        </div>
+      ))}
+    </div>
+  )
+}
 
 export default NavbarItem

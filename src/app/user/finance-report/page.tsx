@@ -1,12 +1,9 @@
 import React from 'react'
 import ListReport from './components/list-report'
+import { getFinanceReport } from '@/lib/finance-report'
 
-const financeReports = [
-  { title: 'Laporan Keuangan Januari 2023', type: 'pdf', url: '/img/test.pdf' },
-  { title: 'Laporan Keuangan Februari 2023', type: 'image', url: '/img/misi.png' },
-]
-
-const FinancePage = () => {
+const FinancePage = async () => {
+  const financeReports = await getFinanceReport()
   return (
     <section className="bg-gray-100 py-12">
       <ListReport financeReports={financeReports} />

@@ -10,6 +10,7 @@ class CustomLoginError extends CredentialsSignin {
 }
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
+  trustHost: true,
   session: {
     strategy: 'jwt',
     maxAge: 3 * 24 * 60 * 60,

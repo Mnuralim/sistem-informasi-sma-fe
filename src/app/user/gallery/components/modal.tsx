@@ -4,10 +4,7 @@ import { usePathname, useRouter, useSearchParams } from 'next/navigation'
 import React from 'react'
 
 interface Props {
-  photos: {
-    src: string
-    title: string
-  }[]
+  photos: IImageGallery[]
 }
 
 const Modal = ({ photos }: Props) => {
@@ -33,7 +30,9 @@ const Modal = ({ photos }: Props) => {
     } else {
       params.set('index', (photos.length - 1).toString())
     }
-    replace(`${pathname}?${params}`)
+    replace(`${pathname}?${params}`, {
+      scroll: false,
+    })
   }
 
   const nextPhoto = () => {
@@ -42,17 +41,21 @@ const Modal = ({ photos }: Props) => {
     } else {
       params.delete('index')
     }
-    replace(`${pathname}?${params}`)
+    replace(`${pathname}?${params}`, {
+      scroll: false,
+    })
   }
 
   const handleCloseModal = () => {
     params.delete('index')
-    replace(`${pathname}?${params}`)
+    replace(`${pathname}?${params}`, {
+      scroll: false,
+    })
   }
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-[200]">
-      <div className="relative bg-white rounded-lg overflow-hidden max-w-3xl mx-auto">
+    <div className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-[200] ">
+      <div className="relative bg-white rounded-lg overflow-hidden max-w-3xl mx-auto max-h-[75%]">
         <button onClick={handleCloseModal} className="absolute top-2 right-2 text-gray-600 hover:text-gray-900">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -65,11 +68,11 @@ const Modal = ({ photos }: Props) => {
           </svg>
         </button>
         <Image
-          src={photos[selectedPhotoIndex - 1].src}
-          alt={photos[selectedPhotoIndex - 1].title}
+          src={photos[selectedPhotoIndex - 1]?.url}
+          alt={photos[selectedPhotoIndex - 1]?.title}
           width={800}
           height={600}
-          objectFit="contain"
+          className="object-center object-cover"
         />
         <button
           onClick={prevPhoto}

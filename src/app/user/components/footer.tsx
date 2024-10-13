@@ -17,40 +17,42 @@ const Footer = ({ profile }: Props) => {
             <div>
               <h1 className="text-xl md:text-2xl font-bold text-gray-900">{profile.name}</h1>
               <p className="text-gray-600 text-sm md:text-base lg:max-w-[50%]">
-                {profile.address}, {profile.city}, {profile.province}
+                {profile.address.address}, {profile.address.city}, {profile.address.province}
               </p>
             </div>
           </div>
-          <div className="flex space-x-6">
+
+          <div className="flex space-x-6 flex-wrap justify-center">
             <Link
               href={profile.facebook}
               target="_blank"
-              className="text-gray-600 hover:text-gray-900 bg-white shadow-md aspect-square p-2 rounded-full flex items-center justify-center"
+              className="text-gray-600 hover:text-white bg-white shadow-md aspect-square p-2 rounded-full flex items-center justify-center hover:bg-blue-600 transition-colors duration-300"
             >
               <FaFacebookF size={20} />
             </Link>
             <Link
               href={profile.instagram}
               target="_blank"
-              className="text-gray-600 hover:text-gray-900 bg-white shadow-md aspect-square p-2 rounded-full flex items-center justify-center"
+              className="text-gray-600 hover:text-white bg-white shadow-md aspect-square p-2 rounded-full flex items-center justify-center hover:bg-pink-500 transition-colors duration-300"
             >
               <FaInstagram size={20} />
             </Link>
             <Link
               href={profile.youtube}
               target="_blank"
-              className="text-gray-600 hover:text-gray-900 bg-white shadow-md aspect-square p-2 rounded-full flex items-center justify-center"
+              className="text-gray-600 hover:text-white bg-white shadow-md aspect-square p-2 rounded-full flex items-center justify-center hover:bg-red-600 transition-colors duration-300"
             >
               <FaYoutube size={20} />
             </Link>
             <Link
               href={`mailto:${profile.email}`}
-              className="text-gray-600 hover:text-gray-900 bg-white shadow-md aspect-square p-2 rounded-full flex items-center justify-center"
+              className="text-gray-600 hover:text-white bg-white shadow-md aspect-square p-2 rounded-full flex items-center justify-center hover:bg-orange-500 transition-colors duration-300"
             >
               <FaEnvelope size={20} />
             </Link>
           </div>
         </div>
+
         <div className="text-center mt-8 text-gray-700">
           <p>
             &copy; {new Date().getFullYear()}

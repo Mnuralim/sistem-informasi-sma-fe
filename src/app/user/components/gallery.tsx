@@ -3,37 +3,12 @@ import React, { useState } from 'react'
 import ImageGallery from './image-gallery'
 import VideoGallery from './video-gallery'
 
-const data = [
-  {
-    url: '/img/misi.png',
-    category: 'Galeri Siswa Berprestasi',
-  },
-  {
-    url: '/img/misi.png',
-    category: 'Galeri Kegiatan Sekolah',
-  },
-  {
-    url: '/img/misi.png',
-    category: 'Galeri Kegiatan Siswa',
-  },
-]
+interface Props {
+  images: IImageGallery[]
+  videos: IVideoGallery[]
+}
 
-const videos = [
-  {
-    url: '/video/example.mp4',
-    category: 'Galeri Video Sekolah',
-  },
-  {
-    url: '/video/example.mp4',
-    category: 'Galeri Video Sekolah',
-  },
-  {
-    url: '/video/example.mp4',
-    category: 'Galeri Video Sekolah',
-  },
-]
-
-const Gallery = () => {
+const Gallery = ({ images, videos }: Props) => {
   const [type, setType] = useState<string>('photo')
 
   const changeType = (type: string) => {
@@ -62,8 +37,8 @@ const Gallery = () => {
         </button>
       </div>
       <div className="grid gap-y-12 md:grid-cols-2 lg:grid-cols-3 gap-x-12">
-        {type === 'photo' && data.map((d) => <ImageGallery key={d.url} image={d} />)}
-        {type === 'video' && videos.map((d) => <VideoGallery key={d.url} video={d} />)}
+        {type === 'photo' && images.map((image) => <ImageGallery key={image.url} image={image} />)}
+        {type === 'video' && videos.map((video) => <VideoGallery key={video.url} video={video} />)}
       </div>
     </section>
   )

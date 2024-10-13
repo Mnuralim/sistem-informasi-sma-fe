@@ -15,12 +15,12 @@ const NewsItem = ({ news }: Props) => {
         <Image src={news.imageUrl} alt={news.title} width={500} height={300} className="object-cover w-full h-48" />
       </div>
       <div className="p-6">
-        <h2 className="text-2xl font-bold text-[#202244] mb-4">{news.title}</h2>
-        <p className="text-lg text-gray-600 mb-4 line-clamp-2">{extractFirstSentence(news.content)}</p>
+        <h2 className="text-xl font-bold text-[#202244] mb-4">{news.title}</h2>
+        <p className="text-base text-gray-600 mb-4 line-clamp-2">{extractFirstSentence(news.content)}</p>
         <div className="flex items-center justify-between">
           <span className="text-sm text-gray-500 line-clamp-1">{formatDate(news.createdAt)}</span>
           <Link
-            className="text-[#EB5437] hover:text-[#202244] transition duration-300"
+            className="text-[#EB5437] hover:text-[#202244] text-sm transition duration-300"
             href={`/user/news/${news.slug}`}
           >
             Selengkapnya

@@ -1,4 +1,3 @@
-// components/NewsDetail.js
 import React from 'react'
 import Image from 'next/image'
 import { WiTime2 } from 'react-icons/wi'
@@ -20,9 +19,10 @@ const NewsDetail = ({ news }: Props) => {
           alt={news.title}
           width={800}
           height={450}
-          className="object-cover w-full object-center h-auto"
+          className="object-cover w-full object-center h-auto transition-transform duration-300 ease-in-out hover:scale-105"
         />
       </div>
+
       <div className="mt-10">
         <div className="flex items-center mb-4 gap-2">
           <div className="flex items-center justify-center py-1 px-3 rounded-2xl bg-dark-blue">
@@ -33,19 +33,25 @@ const NewsDetail = ({ news }: Props) => {
             <span className="text-sm text-black-secondary">{formatDate(news.createdAt)}</span>
           </div>
         </div>
+
         <h1 className="text-3xl font-bold text-dark-blue mb-4">{news.title}</h1>
-        <div className="mt-6 text-lg text-gray-700" dangerouslySetInnerHTML={{ __html: news.content }}></div>
-        <div className="flex items-center gap-2 mt-8">
-          <div className="flex items-center gap-0.5">
-            <IoPersonSharp className="text-sm text-black" />
+
+        <div
+          className="mt-6 text-lg text-gray-700 leading-relaxed"
+          dangerouslySetInnerHTML={{ __html: news.content }}
+        ></div>
+
+        <div className="flex items-center gap-4 mt-8">
+          <div className="flex items-center gap-1">
+            <IoPersonSharp className="text-lg text-black hover:text-orange-500 transition-colors duration-200" />
             <span className="text-sm text-black-secondary">{news.author}</span>
           </div>
-          <div className="flex items-center gap-0.5">
-            <MdLocalFireDepartment className="text-sm text-black" />
+          <div className="flex items-center gap-1">
+            <MdLocalFireDepartment className="text-lg text-black hover:text-red-500 transition-colors duration-200" />
             <span className="text-sm text-black-secondary">123 Tayangan</span>
           </div>
-          <div className="flex items-center gap-0.5">
-            <IoMdShare className="text-sm text-black" />
+          <div className="flex items-center gap-1">
+            <IoMdShare className="text-lg text-black hover:text-blue-500 transition-colors duration-200" />
             <span className="text-sm text-black-secondary">0 Dibagikan</span>
           </div>
         </div>

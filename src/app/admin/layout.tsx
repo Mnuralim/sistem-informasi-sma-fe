@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import Sidebar from './components/side-bar'
 import Header from './components/header'
 import { ToastContainer } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 
 export const metadata: Metadata = {
   title: 'Admin',
@@ -14,11 +15,11 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <div className="">
+    <div className="flex justify-end">
       <Sidebar />
-      <main className="bg-[#f4f4f9] fixed left-[12.666667%] lg:left-[20%] w-[calc(100%-12.666667%)] lg:w-4/5 overflow-y-auto h-full no-scrollbar">
+      <main className="bg-[#f4f4f9]  left-[12.666667%] lg:left-[20%] w-[calc(100%-12.666667%)] lg:w-4/5 overflow-y-auto h-full no-scrollbar">
         <Header />
-        <ToastContainer />
+        <ToastContainer className={`z-[10000]`} />
         {children}
       </main>
     </div>

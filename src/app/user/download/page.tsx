@@ -1,4 +1,3 @@
-// pages/DownloadPage.js
 import Link from 'next/link'
 import React from 'react'
 import { FaDownload } from 'react-icons/fa'
@@ -19,7 +18,7 @@ const Page = () => {
     <div className="bg-gray-100 py-12">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
-          <h2 className="text-base text-[#EB5437] font-semibold tracking-wide uppercase">Unduhan</h2>
+          <h2 className="text-base text-orange-05 font-semibold tracking-wide uppercase">Unduhan</h2>
           <p className="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-[#202244] sm:text-4xl">
             File yang Dapat Diunduh
           </p>
@@ -35,9 +34,9 @@ const Page = () => {
                   <Link
                     href={item.link}
                     download
-                    className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-[#EB5437] hover:bg-[#d94e34]"
+                    className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-orange-05 hover:bg-[#d94e34] transition-colors duration-300"
                   >
-                    <FaDownload className="mr-2" />
+                    <FaDownload className="mr-2 transition-transform duration-200 group-hover:scale-110" />
                     Unduh
                   </Link>
                 </div>

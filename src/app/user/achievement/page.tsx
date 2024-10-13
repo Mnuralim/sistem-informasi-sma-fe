@@ -1,46 +1,9 @@
-// pages/achievements.tsx
 import React from 'react'
 import AchievementCard from './components/achievement-card'
+import { getAchievements } from '@/lib/teacher-achievement'
 
-const achievements = [
-  {
-    photo: '/img/principal.jpeg',
-    name: 'Dr. Andi Setiawan',
-    position: 'Kepala Sekolah',
-    achievement: 'Juara 1 Lomba Inovasi Pendidikan',
-    year: '2022',
-  },
-  {
-    photo: '/img/principal.jpeg',
-    name: 'Budi Santoso, S.Pd.',
-    position: 'Wakil Kepala Sekolah',
-    achievement: 'Penghargaan Guru Teladan',
-    year: '2021',
-  },
-  {
-    photo: '/img/principal.jpeg',
-    name: 'Citra Dewi, M.Pd.',
-    position: 'Guru Senior',
-    achievement: 'Juara 2 Lomba Karya Tulis Ilmiah',
-    year: '2020',
-  },
-  {
-    photo: '/img/principal.jpeg',
-    name: 'Dian Kurniawan',
-    position: 'Staff Administrasi',
-    achievement: 'Penghargaan Karyawan Berprestasi',
-    year: '2021',
-  },
-  {
-    photo: '/img/principal.jpeg',
-    name: 'Eka Putri',
-    position: 'Staff Keuangan',
-    achievement: 'Juara 3 Lomba Akuntansi',
-    year: '2019',
-  },
-]
-
-const Page: React.FC = () => {
+const Page = async () => {
+  const achievements = await getAchievements()
   return (
     <section className="bg-gray-50 py-12">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -54,10 +17,10 @@ const Page: React.FC = () => {
           {achievements.map((achievement, index) => (
             <AchievementCard
               key={index}
-              photo={achievement.photo}
-              name={achievement.name}
-              position={achievement.position}
-              achievement={achievement.achievement}
+              photo={achievement.imageUrl}
+              name={achievement.staffId ? achievement.staff!.name : achievement.teacher!.name}
+              position={achievement.staffId ? achievement.staff!.position : achievement.teacher!.subject}
+              achievement={achievement.award}
               year={achievement.year}
             />
           ))}
