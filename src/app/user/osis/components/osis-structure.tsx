@@ -11,7 +11,7 @@ const OsisStructure = ({ osis }: Props) => {
       <Image
         width={500}
         height={500}
-        src={osis.imageUrl}
+        src={osis.imageUrl ? osis.imageUrl : osis.student.imageUrl}
         alt={osis.position}
         className="w-32 h-32 rounded-full mb-4 object-cover"
       />

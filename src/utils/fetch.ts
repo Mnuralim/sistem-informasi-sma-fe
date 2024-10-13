@@ -4,7 +4,7 @@ const NODE_ENV = process.env.NODE_ENV
 const fetcher = async (path: string, init?: RequestInit) => {
   let initReq: RequestInit | undefined = init
 
-  if (!init?.method) {
+  if (!init?.method || init?.method === 'GET') {
     if (NODE_ENV === 'development') {
       initReq = {
         ...init,
