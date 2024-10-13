@@ -11,7 +11,7 @@ export default function Hero({ logo, name, tagline }: Props) {
   const words = name.split(' ')
   words.pop()
   const noLastWord = words.join(' ')
-  const lastWord = name.split(' ')[name.length - 1]
+  const lastWord = name.split(' ')[name.split(' ').length - 1]
 
   return (
     <section
