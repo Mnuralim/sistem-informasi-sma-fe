@@ -40,7 +40,7 @@ const OsisList = ({ accessToken, osis, students }: Props) => {
       toast.success('Data OSIS berhasil dihapus')
       customRevalidation('/admin/main-web/osis')
     } catch (error: any) {
-      toast.error('Data OSIS gagal dihapus')
+      toast.error(error.message)
     } finally {
       setLoadingDeleteId(null)
     }

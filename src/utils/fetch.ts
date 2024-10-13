@@ -5,18 +5,24 @@ const fetcher = async (path: string, init?: RequestInit) => {
   let initReq: RequestInit | undefined = init
 
   if (!init?.method || init?.method === 'GET') {
-    if (NODE_ENV === 'development') {
-      initReq = {
-        ...init,
-        cache: 'no-store',
-      }
-    } else {
-      initReq = {
-        ...init,
-        next: {
-          revalidate: 3600,
-        },
-      }
+    // if (NODE_ENV === 'development') {
+    //   initReq = {
+    //     ...init,
+    //     cache: 'no-store',
+    //   }
+    // } else {
+    //   initReq = {
+    //     next: {
+    //       revalidate: 3600,
+    //       tags: ['/:path*'],
+    //     },
+    //   }
+    // }
+
+    initReq = {
+      next: {
+        revalidate: 3600,
+      },
     }
   }
 
