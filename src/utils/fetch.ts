@@ -20,9 +20,7 @@ const fetcher = async (path: string, init?: RequestInit) => {
     // }
 
     initReq = {
-      next: {
-        revalidate: 3600,
-      },
+      cache: 'no-store',
     }
   }
 
