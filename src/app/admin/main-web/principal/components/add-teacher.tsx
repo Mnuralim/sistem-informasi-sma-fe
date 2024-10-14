@@ -56,7 +56,7 @@ const AddTeacherModal = ({ accessToken, onClose }: AddTeacherModalProps) => {
       formData.append('rank', teacherData.rank)
       formData.append('golongan', teacherData.golongan)
       formData.append('nip', teacherData.nip)
-      formData.append('role', 'teacher')
+      formData.append('role', 'headmaster')
 
       if (imageFile) {
         formData.append('image', imageFile)
