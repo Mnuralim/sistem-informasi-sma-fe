@@ -6,6 +6,7 @@ import { toast } from 'react-toastify'
 import { createTeacher } from '@/lib/teacher'
 import { customRevalidation } from '@/actions/custom-revalidation'
 import Modal from '@/app/admin/components/modal'
+import CustomSelect from '@/app/admin/components/custom-select'
 
 interface AddTeacherModalProps {
   accessToken: string
@@ -37,11 +38,9 @@ const AddTeacherModal = ({ accessToken, onClose }: AddTeacherModalProps) => {
   const handleAddTeacher = async () => {
     if (
       teacherData.teacherName &&
-      teacherData.description &&
       imageFile &&
       teacherData.email &&
       teacherData.gender &&
-      teacherData.phoneNumber &&
       teacherData.rank &&
       teacherData.golongan &&
       teacherData.nip
@@ -82,7 +81,7 @@ const AddTeacherModal = ({ accessToken, onClose }: AddTeacherModalProps) => {
 
   return (
     <Modal onClose={onClose}>
-      <h2 className="text-xl font-bold text-[#202244]">Tambah Guru</h2>
+      <h2 className="text-xl font-bold text-[#202244]">Tambah Kepala Sekolah</h2>
       <div className="space-y-4">
         <input
           value={teacherData.teacherName}
@@ -105,6 +104,15 @@ const AddTeacherModal = ({ accessToken, onClose }: AddTeacherModalProps) => {
           placeholder="Email"
           className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#EB5437]"
         />
+        <CustomSelect
+          label="Jenis Kelamin"
+          onChange={(value) => setTeacherData({ ...teacherData, gender: value })}
+          value={teacherData.gender}
+          options={[
+            { id: 'man', name: 'Laki-laki' },
+            { id: 'woman', name: 'Perempuan' },
+          ]}
+        />
         <input
           value={teacherData.phoneNumber}
           onChange={(e) => setTeacherData({ ...teacherData, phoneNumber: e.target.value })}
@@ -124,6 +132,13 @@ const AddTeacherModal = ({ accessToken, onClose }: AddTeacherModalProps) => {
           onChange={(e) => setTeacherData({ ...teacherData, golongan: e.target.value })}
           type="text"
           placeholder="Golongan"
+          className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#EB5437]"
+        />
+        <input
+          value={teacherData.subject}
+          onChange={(e) => setTeacherData({ ...teacherData, subject: e.target.value })}
+          type="text"
+          placeholder="Mengajar"
           className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#EB5437]"
         />
         <textarea

@@ -6,6 +6,7 @@ import { toast } from 'react-toastify'
 import { updateTeacher } from '@/lib/teacher'
 import { customRevalidation } from '@/actions/custom-revalidation'
 import Modal from '@/app/admin/components/modal'
+import CustomSelect from '@/app/admin/components/custom-select'
 
 interface EditTeacherModalProps {
   teacher: ITeacher
@@ -95,6 +96,15 @@ const EditTeacherModal = ({ teacher, accessToken, onClose }: EditTeacherModalPro
           placeholder="Email"
           className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#EB5437]"
         />
+        <CustomSelect
+          label="Jenis Kelamin"
+          onChange={(value) => setTeacherData({ ...teacherData, gender: value as 'man' | 'woman' })}
+          value={teacherData.gender}
+          options={[
+            { id: 'man', name: 'Laki-laki' },
+            { id: 'woman', name: 'Perempuan' },
+          ]}
+        />
         <input
           value={teacherData.phoneNumber}
           onChange={(e) => setTeacherData({ ...teacherData, phoneNumber: e.target.value })}
@@ -114,6 +124,13 @@ const EditTeacherModal = ({ teacher, accessToken, onClose }: EditTeacherModalPro
           onChange={(e) => setTeacherData({ ...teacherData, golongan: e.target.value })}
           type="text"
           placeholder="Golongan"
+          className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#EB5437]"
+        />
+        <input
+          value={teacherData.subject}
+          onChange={(e) => setTeacherData({ ...teacherData, subject: e.target.value })}
+          type="text"
+          placeholder="Mengajar"
           className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#EB5437]"
         />
         <textarea
