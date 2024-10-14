@@ -69,7 +69,7 @@ const AddTeacherModal = ({ accessToken, onClose }: AddTeacherModalProps) => {
           throw new Error(resJson.message)
         }
         customRevalidation('/admin/main-web/principal')
-        toast.success('Kepala sekolah berhasil ditambahkan')
+        toast.success('Data Kepala sekolah berhasil ditambahkan')
         onClose()
       } catch (error) {
         toast.error('Gagal menambahkan kepala sekolah')
