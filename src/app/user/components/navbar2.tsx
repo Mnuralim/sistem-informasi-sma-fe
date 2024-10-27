@@ -137,7 +137,7 @@ const Navbar = ({ handleCloseNavbar }: Props) => {
       <div className="hidden lg:flex lg:flex-row items-center justify-between px-3">
         <NavbarItem data={datas} handleRedirect={handleRedirect} />
       </div>
-      <div className="lg:hidden flex flex-col h-screen overflow-y-auto px-3 pb-36">
+      <div className="lg:hidden flex flex-col h-screen overflow-y-auto px-3 pb-52">
         {datas.map((data, index) => (
           <MobileNavbarItem
             key={index}

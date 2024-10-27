@@ -3,15 +3,16 @@ import Image from 'next/image'
 
 interface Props {
   mission: string
+  schoolName: string
 }
 
-const Mission = ({ mission }: Props) => {
+const Mission = ({ mission, schoolName }: Props) => {
   const items = mission.split('\n')
   return (
     <section className="py-10 lg:py-20 px-5 lg:px-0 bg-[#f9f9fa]">
       <div className="w-full max-w-7xl mx-auto">
         <h1 className="text-orange-05 text-center font-bold text-2xl lg:text-3xl transition-opacity duration-300 ease-in-out">
-          Misi SMA Negeri 2 Lorem
+          Misi {schoolName}
         </h1>
         <div className="grid lg:grid-cols-2 gap-5 mt-5">
           {items.map((item, index) => (

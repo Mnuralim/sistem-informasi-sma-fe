@@ -30,7 +30,7 @@ const Page = async () => {
       <Slider sliders={sliders} />
       {welcomeMessage && <PrincipalSpeech welcomeMessage={welcomeMessage} />}
       <Vision vision={profile.vision} />
-      <Mission mission={profile.mission} />
+      <Mission mission={profile.mission} schoolName={profile.name} />
       <News news={news} />
       <Gallery images={imageGallery} videos={videoGallery} />
       <Contact
