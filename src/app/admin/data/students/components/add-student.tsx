@@ -55,7 +55,7 @@ const AddStudent = ({ accessToken, onClose, grades }: AddTeacherModalProps) => {
         throw new Error(resJson.message)
       }
       toast.success('Siswa berhasil ditambahkan')
-      customRevalidation('/admin/data/students')
+      customRevalidation(['/admin/data/students', '/user/student'])
       onClose()
     } catch (error: any) {
       toast.error('Siswa gagal ditambahkan')

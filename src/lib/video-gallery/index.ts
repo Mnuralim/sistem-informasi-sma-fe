@@ -1,7 +1,9 @@
 import fetcher from '@/utils/fetch'
 
 const getAllVideoGallery = async () => {
-  const response = await fetcher('/videos-gallery')
+  const response = await fetcher('/videos-gallery', {
+    next: { revalidate: 1 * 60 * 60 * 24 * 7 },
+  })
 
   const resJson = await response.json()
   const data: IVideoGallery[] = resJson.data

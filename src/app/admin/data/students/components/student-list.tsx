@@ -28,7 +28,7 @@ const StudentList = ({ accessToken, students, grades }: Props) => {
         throw new Error(resJson.message)
       }
       toast.success('Data Siswa berhasil dihapus')
-      customRevalidation('/admin/data/students')
+      customRevalidation(['/admin/data/students', '/user/student'])
     } catch (error: any) {
       toast.error(error.message)
     } finally {

@@ -1,7 +1,9 @@
 import fetcher from '@/utils/fetch'
 
 const getSliders = async () => {
-  const response = await fetcher('/sliders')
+  const response = await fetcher('/sliders', {
+    next: { revalidate: 1 * 60 * 60 * 24 * 7 },
+  })
 
   const resJson = await response.json()
   const data: ISlider[] = resJson.data

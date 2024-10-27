@@ -1,7 +1,9 @@
 import fetcher from '@/utils/fetch'
 
 const getStaff = async () => {
-  const response = await fetcher('/staff')
+  const response = await fetcher('/staff', {
+    next: { revalidate: 1 * 60 * 60 * 24 * 7 },
+  })
 
   const resJson = await response.json()
   const data: IStaff[] = resJson.data

@@ -1,7 +1,9 @@
 import fetcher from '@/utils/fetch'
 
 const getHistory = async () => {
-  const response = await fetcher('/history')
+  const response = await fetcher('/history', {
+    next: { revalidate: 1 * 60 * 60 * 24 * 7 },
+  })
 
   const resJson = await response.json()
   const data: IHistory = resJson.data

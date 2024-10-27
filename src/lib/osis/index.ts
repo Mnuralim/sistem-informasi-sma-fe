@@ -1,7 +1,9 @@
 import fetcher from '@/utils/fetch'
 
 const getOsis = async () => {
-  const response = await fetcher('/osis')
+  const response = await fetcher('/osis', {
+    next: { revalidate: 1 * 60 * 60 * 24 * 7 },
+  })
 
   const resJson = await response.json()
   const data: IOsis[] = resJson.data

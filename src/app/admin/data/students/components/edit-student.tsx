@@ -55,7 +55,8 @@ const EditStudent = ({ student, accessToken, onClose, grades }: EditTeacherModal
         throw new Error(resJson.message)
       }
       toast.success('Data siswa berhasil diperbarui')
-      customRevalidation('/admin/data/students')
+      customRevalidation(['/admin/data/students', '/user/student'])
+
       onClose()
     } catch (error: any) {
       toast.error('Gagal memperbarui data siswa')

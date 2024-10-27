@@ -7,7 +7,9 @@ const getTeacher = async (query?: string) => {
   } else {
     url = `/teacher`
   }
-  const response = await fetcher(url)
+  const response = await fetcher(url, {
+    next: { revalidate: 1 * 60 * 60 * 24 * 7 },
+  })
 
   const resJson = await response.json()
   const data: ITeacher[] = resJson.data

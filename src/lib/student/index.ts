@@ -1,7 +1,9 @@
 import fetcher from '@/utils/fetch'
 
 const getStudents = async () => {
-  const response = await fetcher('/students')
+  const response = await fetcher('/students', {
+    next: { revalidate: 60 },
+  })
 
   const resJson = await response.json()
   const data: IStudent[] = resJson.data

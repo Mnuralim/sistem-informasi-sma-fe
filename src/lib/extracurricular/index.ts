@@ -1,7 +1,9 @@
 import fetcher from '@/utils/fetch'
 
 const getExtracurricular = async () => {
-  const response = await fetcher('/extracurriculars')
+  const response = await fetcher('/extracurriculars', {
+    next: { revalidate: 1 * 60 * 60 * 24 * 7 },
+  })
 
   const resJson = await response.json()
   const data: IExtracurricular[] = resJson.data

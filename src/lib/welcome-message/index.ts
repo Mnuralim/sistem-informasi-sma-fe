@@ -1,7 +1,9 @@
 import fetcher from '@/utils/fetch'
 
 const getWelcomeMessage = async (type: string) => {
-  const response = await fetcher(`/welcome-message/${type}`)
+  const response = await fetcher(`/welcome-message/${type}`, {
+    next: { revalidate: 1 * 60 * 60 * 24 * 7 },
+  })
 
   const resJson = await response.json()
   const data: IWelcomeMessage = resJson.data

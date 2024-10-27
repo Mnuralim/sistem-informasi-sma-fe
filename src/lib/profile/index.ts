@@ -1,7 +1,9 @@
 import fetcher from '@/utils/fetch'
 
 const getProfile = async () => {
-  const response = await fetcher('/profiles')
+  const response = await fetcher('/profiles', {
+    next: { revalidate: 1 * 60 * 60 * 24 * 7 },
+  })
 
   const resJson = await response.json()
   const data: IProfile = resJson.data

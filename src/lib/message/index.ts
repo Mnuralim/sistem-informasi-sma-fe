@@ -1,7 +1,9 @@
 import fetcher from '@/utils/fetch'
 
 const getMessages = async () => {
-  const response = await fetcher('/messages')
+  const response = await fetcher('/messages', {
+    next: { revalidate: 1 * 60 * 60 * 24 * 7 },
+  })
 
   const resJson = await response.json()
   const data: IMessage[] = resJson.data

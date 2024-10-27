@@ -1,7 +1,9 @@
 import fetcher from '@/utils/fetch'
 
 const getBlog = async () => {
-  const response = await fetcher('/blogs')
+  const response = await fetcher('/blogs', {
+    next: { revalidate: 1 * 60 * 60 * 24 * 7 },
+  })
 
   const resJson = await response.json()
   const data: IBlog[] = resJson.data
@@ -9,7 +11,9 @@ const getBlog = async () => {
 }
 
 const getBlogById = async (id: string) => {
-  const response = await fetcher(`/blogs/${id}`)
+  const response = await fetcher(`/blogs/${id}`, {
+    next: { revalidate: 1 * 60 * 60 * 24 * 7 },
+  })
 
   const resJson = await response.json()
   const data: IBlog | null = resJson.data || null

@@ -1,7 +1,9 @@
 import fetcher from '@/utils/fetch'
 
 const getAllNews = async () => {
-  const response = await fetcher('/news')
+  const response = await fetcher('/news', {
+    next: { revalidate: 1 * 60 * 60 * 24 * 7 },
+  })
 
   const resJson = await response.json()
   const data: INews[] = resJson.data
@@ -9,7 +11,9 @@ const getAllNews = async () => {
 }
 
 const getNewsBySlug = async (slug: string) => {
-  const response = await fetcher(`/news/${slug}`)
+  const response = await fetcher(`/news/${slug}`, {
+    next: { revalidate: 1 * 60 * 60 * 24 * 7 },
+  })
 
   const resJson = await response.json()
   const data: INews = resJson.data
