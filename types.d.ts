@@ -278,3 +278,14 @@ interface IGrade {
   id: string
   name: string
 }
+
+interface IMessage {
+  id: string
+  name: string
+  email: string
+  message: string
+  subject: string
+  isRead: boolean
+  createdAt: string
+  updatedAt: string
+}
