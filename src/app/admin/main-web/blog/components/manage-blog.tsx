@@ -24,7 +24,7 @@ const AdminManageBlogs = ({ accessToken, blogs }: Props) => {
     try {
       const response = await deleteBlog(id, accessToken)
       if (response.ok) {
-        customRevalidation('/admin/main-web/blog')
+        customRevalidation(['/admin/main-web/blog', '/user/blog'])
         toast.success('Blog berhasil dihapus')
       }
     } catch (error) {

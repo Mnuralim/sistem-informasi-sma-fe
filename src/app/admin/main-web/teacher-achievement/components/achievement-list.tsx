@@ -55,7 +55,13 @@ const AchievementsList = ({ accessToken, achievements, dataEntity }: Props) => {
         throw new Error(resJson.message)
       }
       toast.success('Data prestasi berhasil dihapus')
-      customRevalidation('/admin/main-web/teacher-achievement')
+      customRevalidation([
+        '/admin/main-web/teacher-achievement',
+        '/admin/main-web/image',
+        '/user',
+        '/user/gallery',
+        '/user/achievement',
+      ])
     } catch (error: any) {
       toast.error('Gagal menghapus data prestasi')
     } finally {

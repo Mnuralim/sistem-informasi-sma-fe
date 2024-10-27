@@ -61,7 +61,7 @@ const EditTeacherModal = ({ teacher, accessToken, onClose }: EditTeacherModalPro
       if (!response.ok) {
         throw new Error(resJson.message)
       }
-      customRevalidation('/admin/main-web/principal')
+      customRevalidation(['/admin/main-web/principal', '/admin/data/teacher', '/user', '/user/headmaster'])
       toast.success('Kepala Sekolah berhasil diperbarui')
       onClose()
     } catch (error) {

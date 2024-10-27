@@ -37,7 +37,7 @@ const AddFinanceReportModal = ({ accessToken, onClose }: AddFinanceReportModalPr
         if (!response.ok) {
           throw new Error(resJson.message)
         }
-        customRevalidation('/admin/main-web/finance-report')
+        customRevalidation(['/admin/main-web/finance-report', '/user/finance-report'])
         toast.success('Laporan keuangan berhasil ditambahkan')
         onClose()
       } catch (error) {

@@ -57,7 +57,7 @@ const Form = ({ profile, accessToken }: Props) => {
         throw new Error('Terjadi kesalahan yang tidak terduga')
       }
 
-      customRevalidation('/admin/main-web/profile')
+      customRevalidation(['/admin', '/user'], 'layout')
 
       toast.success(data.message)
     } catch (error: any) {

@@ -42,7 +42,7 @@ const EditFinanceReportModal = ({ report, accessToken, onClose }: EditFinanceRep
           throw new Error(resJson.message)
         }
 
-        customRevalidation('/admin/main-web/finance-report')
+        customRevalidation(['/admin/main-web/finance-report', '/user/finance-report'])
         toast.success('Laporan keuangan berhasil diperbarui')
         onClose()
       } catch (error) {

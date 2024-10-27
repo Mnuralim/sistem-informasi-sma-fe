@@ -46,7 +46,7 @@ const AddBlogModal = ({ accessToken, setIsModalOpen, isModalOpen }: Props) => {
       if (!response.ok) {
         throw new Error(resJson.message)
       }
-      customRevalidation('/admin/main-web/blog')
+      customRevalidation(['/admin/main-web/blog', '/user/blog'])
       toast.success('Blog berhasil ditambahkan')
       setTitle('')
       setContent('')

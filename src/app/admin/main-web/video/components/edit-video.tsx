@@ -26,7 +26,7 @@ const EditVideoModal = ({ video, accessToken, onClose }: EditVideoModalProps) =>
         if (!response.ok) {
           throw new Error(resJson.message)
         }
-        customRevalidation('/admin/main-web/video')
+        customRevalidation(['/admin/main-web/video', '/user', '/user/gallery'])
         toast.success('Video berhasil diperbarui')
         onClose()
       } catch (error) {

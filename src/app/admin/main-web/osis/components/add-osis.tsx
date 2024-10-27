@@ -44,7 +44,7 @@ const AddOsisModal = ({ students, accessToken, onClose }: Props) => {
         if (!response.ok) {
           throw new Error(resJson.message)
         }
-        customRevalidation('/admin/main-web/osis')
+        customRevalidation(['/admin/main-web/osis', '/user/osis'])
         toast.success('Data OSIS berhasil ditambahkan')
         onClose()
       } catch (error: any) {

@@ -36,7 +36,7 @@ const AddImageModal = ({ accessToken, onClose }: AddImageModalProps) => {
       if (!response.ok) {
         throw new Error(resJson.message)
       }
-      customRevalidation('/admin/main-web/image')
+      customRevalidation(['/admin/main-web/image', '/user', '/user/gallery'])
       toast.success('Gambar berhasil ditambahkan')
       onClose()
     } catch (error) {

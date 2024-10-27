@@ -27,7 +27,7 @@ const StaffList = ({ accessToken, staffs }: Props) => {
         throw new Error(resJson.message)
       }
       toast.success('Data staff berhasil dihapus')
-      customRevalidation('/admin/data/staff')
+      customRevalidation(['/admin/data/staff', '/user/staff'])
     } catch (error: any) {
       toast.error('Gagal menghapus data guru')
     } finally {

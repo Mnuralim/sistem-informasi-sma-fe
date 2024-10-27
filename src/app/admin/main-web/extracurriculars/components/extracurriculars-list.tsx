@@ -35,7 +35,7 @@ const ExtracurricularsList = ({ extracurriculars, accessToken }: Props) => {
         throw new Error(resJson.message)
       }
       toast.success('Ekstrakurikuler berhasil dihapus')
-      customRevalidation('/admin/main-web/extracurriculars')
+      customRevalidation(['/admin/main-web/extracurriculars', '/user/extracurricular'])
     } catch (error: any) {
       toast.error('Gagal menghapus ekstrakurikuler')
     } finally {

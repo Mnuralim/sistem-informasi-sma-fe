@@ -60,7 +60,7 @@ const EditTeacherModal = ({ teacher, accessToken, onClose }: EditTeacherModalPro
       if (!response.ok) {
         throw new Error(resJson.message)
       }
-      customRevalidation('/admin/main-web/school-committee')
+      customRevalidation(['/admin/main-web/school-committee', '/user/committee'])
       toast.success('Komite sekolah berhasil diperbarui')
       onClose()
     } catch (error) {

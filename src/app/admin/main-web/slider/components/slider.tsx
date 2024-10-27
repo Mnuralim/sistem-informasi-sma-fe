@@ -29,7 +29,7 @@ const Slider = ({ sliders, accessToken }: Props) => {
         if (!response.ok) {
           throw new Error(resJson.message)
         }
-        customRevalidation('/admin/main-web/slider')
+        customRevalidation(['/admin/main-web/slider', '/user'])
         toast.success(resJson.message)
       } else {
         if (sliders.length < 5) {
@@ -38,7 +38,7 @@ const Slider = ({ sliders, accessToken }: Props) => {
           if (!response.ok) {
             throw new Error(resJson.message)
           }
-          customRevalidation('/admin/main-web/slider')
+          customRevalidation(['/admin/main-web/slider', '/user'])
           toast.success(resJson.message)
         }
       }

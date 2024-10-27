@@ -9,6 +9,11 @@ import { Disclosure, DisclosureButton, DisclosurePanel } from '@headlessui/react
 import { RxHamburgerMenu } from 'react-icons/rx'
 import Link from 'next/link'
 import { LuFolder } from 'react-icons/lu'
+import { signOut } from 'next-auth/react'
+
+interface Props {
+  profile: IProfile
+}
 
 interface SubItem {
   name: string
@@ -75,7 +80,7 @@ const isActivePath = (path: string | null, pathname: string, subitems: SubItem[]
   )
 }
 
-const Sidebar = (): JSX.Element | null => {
+const Sidebar = ({ profile }: Props): JSX.Element | null => {
   const [expandView, setExpandView] = useState<boolean>(false)
   const pathname = usePathname()
 
@@ -157,10 +162,10 @@ const Sidebar = (): JSX.Element | null => {
                 width={500}
                 height={500}
                 alt="logo"
-                src="/img/logo.png"
+                src={profile.imageUrl ?? 'https://placehold.co/400x400/gray/white.png'}
                 className="aspect-square rounded-full w-10 h-10 md:w-14 md:h-14 lg:w-16 lg:h-16"
               />
-              <h1 className="text-xs md:text-sm lg:text-base text-orange-05 font-semibold">SMA Negeri 2 Lorem</h1>
+              <h1 className="text-xs md:text-sm lg:text-base text-orange-05 font-semibold">{profile.name}</h1>
             </div>
             <button onClick={() => setExpandView(!expandView)} className="lg:hidden text-white bg-orange-05 p-2">
               {expandView ? (
@@ -175,9 +180,11 @@ const Sidebar = (): JSX.Element | null => {
           </div>
         </div>
         <div className="mt-10 text-white pb-24 lg:pb-16">
-          <button className="flex items-center gap-2 px-3">
+          <button onClick={() => signOut()} className="flex items-center gap-2 px-3">
             <IoMdLogOut className="text-lg md:text-xl lg:text-2xl" />
-            {expandView && <span className="text-xs md:text-sm lg:text-base font-bold">Logout</span>}
+            <span className={`text-xs md:text-sm lg:text-base font-bold ${expandView ? 'block' : 'hidden lg:block'}`}>
+              Logout
+            </span>
           </button>
         </div>
       </div>

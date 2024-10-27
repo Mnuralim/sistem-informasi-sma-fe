@@ -34,7 +34,7 @@ const GalleryList = ({ images, accessToken }: Props) => {
       if (!response.ok) {
         throw new Error(resJson.message)
       }
-      customRevalidation('/admin/main-web/image')
+      customRevalidation(['/admin/main-web/image', '/user', '/user/gallery'])
       toast.success('Gambar berhasil dihapus')
     } catch (error) {
       toast.error('Gagal menghapus gambar')

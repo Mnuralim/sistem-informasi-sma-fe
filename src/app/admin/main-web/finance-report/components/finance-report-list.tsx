@@ -34,7 +34,7 @@ const FinanceReportsList = ({ accessToken, reports }: Props) => {
       if (!response.ok) {
         throw new Error(resJson.message)
       }
-      customRevalidation('/admin/main-web/finance-report')
+      customRevalidation(['/admin/main-web/finance-report', '/user/finance-report'])
       toast.success('Laporan keuangan berhasil dihapus')
     } catch (error) {
       toast.error('Gagal menghapus laporan')

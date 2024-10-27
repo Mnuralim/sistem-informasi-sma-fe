@@ -59,7 +59,7 @@ const AddVideoModal = ({ accessToken, onClose }: AddVideoModalProps) => {
           throw new Error(resJson.message)
         }
 
-        customRevalidation('/admin/main-web/video')
+        customRevalidation(['/admin/main-web/video', '/user', '/user/gallery'])
         toast.success('Video baru berhasil ditambahkan')
         onClose()
       } catch (error) {

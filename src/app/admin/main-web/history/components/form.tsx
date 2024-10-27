@@ -73,7 +73,7 @@ const Form = ({ history, accessToken }: Props) => {
         throw new Error(resJson.message)
       }
       toast.success(resJson.message)
-      customRevalidation('/admin/main-web/history')
+      customRevalidation(['/admin/main-web/history', '/user/history'])
     } catch (error) {
       console.error(error)
     } finally {

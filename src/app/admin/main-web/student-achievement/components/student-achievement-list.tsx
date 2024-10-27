@@ -36,7 +36,7 @@ const AchievementsList = ({ accessToken, achievements, students }: Props) => {
         throw new Error(resJson.message)
       }
       toast.success('Prestasi siswa berhasil dihapus')
-      customRevalidation('/admin/main-web/student-achievements')
+      customRevalidation(['/admin/main-web/student-achievements', '/admin/main-web/image', '/user', '/user/gallery'])
     } catch (error: any) {
       toast.error('Prestasi siswa gagal dihapus')
     } finally {

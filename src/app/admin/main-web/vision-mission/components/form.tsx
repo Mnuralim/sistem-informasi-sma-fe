@@ -27,7 +27,7 @@ const Form = ({ id, missionData, visionData, accessToken }: Props) => {
         throw new Error(resJson.message)
       }
 
-      customRevalidation('/admin/main-web/vision-mission')
+      customRevalidation(['/admin/main-web/vision-mission', '/user'])
       toast.success('Data berhasil disimpan')
     } catch (error: any) {
       toast.error('Gagal menyimpan data')

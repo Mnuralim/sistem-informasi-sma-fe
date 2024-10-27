@@ -53,7 +53,13 @@ const EditAchievementModal = ({ achievement, dataEntity, accessToken, onClose }:
         if (!response.ok) {
           throw new Error(resJson.message)
         }
-        customRevalidation('/admin/main-web/teacher-achievement')
+        customRevalidation([
+          '/admin/main-web/teacher-achievement',
+          '/admin/main-web/image',
+          '/user',
+          '/user/gallery',
+          '/user/achievement',
+        ])
         toast.success('Prestasi berhasil diperbarui')
         onClose()
       } catch (error) {

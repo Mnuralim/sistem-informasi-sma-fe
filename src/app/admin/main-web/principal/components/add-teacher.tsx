@@ -68,7 +68,7 @@ const AddTeacherModal = ({ accessToken, onClose }: AddTeacherModalProps) => {
         if (!response.ok) {
           throw new Error(resJson.message)
         }
-        customRevalidation('/admin/main-web/principal')
+        customRevalidation(['/admin/main-web/principal', '/admin/data/teacher', '/user', '/user/headmaster'])
         toast.success('Data Kepala sekolah berhasil ditambahkan')
         onClose()
       } catch (error) {

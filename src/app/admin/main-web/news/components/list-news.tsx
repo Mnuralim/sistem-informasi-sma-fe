@@ -26,7 +26,7 @@ const ListNews = ({ news, accessToken }: Props) => {
         throw new Error(resJson.message)
       }
       toast.success(resJson.message)
-      customRevalidation('/admin/main-web/news')
+      customRevalidation(['/admin/main-web/news', '/user', '/user/news', `/admmin/main-web/news/${resJson.data.slug}`])
     } catch (error: any) {
       toast.error(error.message)
     } finally {

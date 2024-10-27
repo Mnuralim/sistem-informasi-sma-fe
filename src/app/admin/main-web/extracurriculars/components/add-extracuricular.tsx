@@ -43,7 +43,7 @@ const AddExtracurricularModal = ({ accessToken, onClose }: AddExtracurricularMod
           throw new Error(resJson.message)
         }
 
-        customRevalidation('/admin/main-web/extracurriculars')
+        customRevalidation(['/admin/main-web/extracurriculars', '/user/extracurricular'])
         toast.success('Ekstrakurikuler berhasil ditambahkan')
         onClose()
       } catch (error) {

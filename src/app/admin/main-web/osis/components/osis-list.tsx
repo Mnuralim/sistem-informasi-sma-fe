@@ -38,7 +38,7 @@ const OsisList = ({ accessToken, osis, students }: Props) => {
         throw new Error(resJson.message)
       }
       toast.success('Data OSIS berhasil dihapus')
-      customRevalidation('/admin/main-web/osis')
+      customRevalidation(['/admin/main-web/osis', '/user/osis'])
     } catch (error: any) {
       toast.error(error.message)
     } finally {

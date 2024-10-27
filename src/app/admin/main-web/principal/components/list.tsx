@@ -27,7 +27,7 @@ const TeacherList = ({ accessToken, teacher }: Props) => {
         throw new Error(resJson.message)
       }
       toast.success('Data guru berhasil dihapus')
-      customRevalidation('/admin/main-web/teacher')
+      customRevalidation(['/admin/main-web/principal', '/admin/data/teacher', '/user', '/user/headmaster'])
     } catch (error: any) {
       toast.error(error.message)
     } finally {

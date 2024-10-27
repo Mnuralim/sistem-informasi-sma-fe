@@ -54,7 +54,7 @@ const EditBlog = ({ accessToken, blog }: Props) => {
       }
       toast.success('Blog berhasil diperbarui')
       setTimeout(() => {
-        customRevalidation('/admin/main-web/blog')
+        customRevalidation(['/admin/main-web/blog', '/user/blog'])
         router.push('/admin/main-web/blog')
       }, 3000)
     } catch (error: any) {

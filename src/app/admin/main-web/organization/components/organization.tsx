@@ -43,7 +43,7 @@ const Organization = ({ id, imageUrl, accessToken }: Props) => {
       if (!response.ok) {
         throw new Error(resJson.message)
       }
-      customRevalidation('/admin/main-web/organization')
+      customRevalidation(['/admin/main-web/organization', '/user/organization'])
       toast.success(resJson.message)
     } catch (error: any) {
       toast.error('Gagal menambahkan struktur organisasi')

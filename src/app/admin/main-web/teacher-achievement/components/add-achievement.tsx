@@ -52,7 +52,13 @@ const AddAchievementModal = ({ dataEntity, accessToken, onClose }: Props) => {
         if (!response.ok) {
           throw new Error(resJson.message)
         }
-        customRevalidation('/admin/main-web/teacher-achievement')
+        customRevalidation([
+          '/admin/main-web/teacher-achievement',
+          '/admin/main-web/image',
+          '/user',
+          '/user/gallery',
+          '/user/achievement',
+        ])
         toast.success('Prestasi berhasil ditambahkan')
         onClose()
       } catch (error) {

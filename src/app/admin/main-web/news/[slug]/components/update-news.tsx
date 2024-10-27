@@ -55,7 +55,13 @@ const UpdateNews = ({ accessToken, news }: Props) => {
 
       toast.success(resJson.message)
       setTimeout(() => {
-        customRevalidation('/admin/main-web/news')
+        customRevalidation([
+          '/admin/main-web/news',
+          '/user',
+          '/user/news',
+          `/admmin/main-web/news/${resJson.data.slug}`,
+        ])
+
         router.push('/admin/main-web/news')
       }, 3000)
     } catch (error: any) {

@@ -63,7 +63,7 @@ const AddTeacherModal = ({ accessToken, onClose }: AddTeacherModalProps) => {
         throw new Error(resJson.message)
       }
       toast.success('Guru berhasil ditambahkan')
-      customRevalidation('/admin/data/teacher')
+      customRevalidation(['/admin/data/teacher', '/user/teacher'])
       onClose()
     } catch (error: any) {
       toast.error(error.message)

@@ -48,8 +48,7 @@ const ImageProfile = ({ url, accessToken }: Props) => {
       if (!response.ok) {
         throw new Error(data.message || 'Network response was not ok')
       }
-
-      customRevalidation('/admin/main-web/profile')
+      customRevalidation(['/admin', '/user'], 'layout')
       toast.success(data.message)
     } catch (error: any) {
       toast.error(error.message || 'Terjadi kesalahan yang tidak terduga')

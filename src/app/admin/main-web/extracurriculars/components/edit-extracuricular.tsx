@@ -44,7 +44,7 @@ const EditExtracurricularModal = ({ extracurricular, accessToken, onClose }: Edi
           throw new Error(resJson.message)
         }
 
-        customRevalidation('/admin/main-web/extracurriculars')
+        customRevalidation(['/admin/main-web/extracurriculars', '/user/extracurricular'])
         toast.success('Ekstrakurikuler berhasil diperbarui')
         onClose()
       } catch (error) {

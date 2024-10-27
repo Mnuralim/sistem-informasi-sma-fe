@@ -67,7 +67,7 @@ const AddTeacherModal = ({ accessToken, onClose }: AddTeacherModalProps) => {
         if (!response.ok) {
           throw new Error(resJson.message)
         }
-        customRevalidation('/admin/main-web/school-committee')
+        customRevalidation(['/admin/main-web/school-committee', '/user/committee'])
         toast.success('Komite sekolah berhasil ditambahkan')
         onClose()
       } catch (error) {

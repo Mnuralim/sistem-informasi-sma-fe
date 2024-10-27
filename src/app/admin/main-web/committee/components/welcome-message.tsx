@@ -33,7 +33,7 @@ const WelcomeMessage = ({ welcomeMessageData, accessToken, committee }: Props) =
         throw new Error(response.statusText)
       }
       toast.success('Sukses menambahkan sambutan komite sekolah')
-      customRevalidation('/admin/main-web/committee')
+      customRevalidation(['/admin/main-web/committee', '/user/committee'])
     } catch (error: any) {
       toast.error('Gagal menambahkan sambutan komite sekolah')
     } finally {

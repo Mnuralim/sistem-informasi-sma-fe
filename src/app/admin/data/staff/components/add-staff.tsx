@@ -63,7 +63,7 @@ const AddStaffModal = ({ accessToken, onClose }: AddTeacherModalProps) => {
         throw new Error(resJson.message)
       }
       toast.success('Staff berhasil ditambahkan')
-      customRevalidation('/admin/data/staff')
+      customRevalidation(['/admin/data/staff', '/user/staff'])
       onClose()
     } catch (error: any) {
       toast.error('Staff gagal ditambahkan')

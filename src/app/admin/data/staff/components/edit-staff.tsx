@@ -62,7 +62,7 @@ const EditStaffModal = ({ staff, accessToken, onClose }: EditTeacherModalProps) 
         throw new Error(resJson.message)
       }
       toast.success('Data Staff berhasil diperbarui')
-      customRevalidation('/admin/data/staff')
+      customRevalidation(['/admin/data/staff', '/user/staff'])
       onClose()
     } catch (error: any) {
       toast.error('Data Staff gagal diperbarui')

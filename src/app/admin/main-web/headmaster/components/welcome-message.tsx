@@ -33,7 +33,7 @@ const WelcomeMessage = ({ welcomeMessageData, accessToken, headmaster }: Props) 
         throw new Error(response.statusText)
       }
       toast.success('Sukses menambahkan sambutan kepala sekolah')
-      customRevalidation('/admin/main-web/headmaster')
+      customRevalidation(['/admin/main-web/headmaster', '/user/headmaster'])
     } catch (error: any) {
       toast.error('Gagal menambahkan sambutan kepala sekolah')
     } finally {
@@ -47,13 +47,6 @@ const WelcomeMessage = ({ welcomeMessageData, accessToken, headmaster }: Props) 
         <h1 className="lg:text-4xl text-3xl font-bold text-[#202244] mb-8 text-center">Sambutan Kepala Sekolah</h1>
         {welcomeMessageData || showForm ? (
           <div className="space-y-6">
-            {/* <input
-              type="text"
-              value={headmasterId}
-              onChange={(e) => setHeadmasterId(e.target.value)}
-              className="w-full px-4 py-2 border rounded-lg outline-none bg-gray-50 border-gray-300 focus:border-orange-05 focus:ring-2 focus:ring-orange-05"
-              placeholder="Masukkan nama kepala sekolah"
-            /> */}
             <CustomSelect
               label="Pilih Kepala Sekolah"
               onChange={(e) => setHeadmasterId(e)}
