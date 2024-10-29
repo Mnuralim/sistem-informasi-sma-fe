@@ -5,6 +5,7 @@ import { toast } from 'react-toastify'
 import { customRevalidation } from '@/actions/custom-revalidation'
 import Modal from '../../components/modal'
 import { deleteMessage, updateMessage } from '@/lib/message'
+import { formatDate } from '@/utils/format-date'
 
 interface Props {
   messages: IMessage[]
@@ -73,6 +74,9 @@ const MessageList = ({ accessToken, messages }: Props) => {
                   Pesan
                 </th>
                 <th className="px-6 py-4 text-left text-xs font-medium text-white uppercase tracking-wider bg-[#202244]">
+                  Tanggal
+                </th>
+                <th className="px-6 py-4 text-left text-xs font-medium text-white uppercase tracking-wider bg-[#202244]">
                   Aksi
                 </th>
               </tr>
@@ -83,6 +87,8 @@ const MessageList = ({ accessToken, messages }: Props) => {
                   <td className="px-6 py-4 text-sm text-[#202244]">{message.name}</td>
                   <td className="px-6 py-4 text-sm text-gray-500">{message.email}</td>
                   <td className="px-6 py-4 text-sm text-gray-500 line-clamp-1">{message.message}</td>
+                  <td className="px-6 py-4 text-sm text-gray-500 line-clamp-1">{formatDate(message.createdAt)}</td>
+
                   <td className="px-6 py-4 text-sm text-gray-500">
                     <div className="flex gap-2">
                       <button
