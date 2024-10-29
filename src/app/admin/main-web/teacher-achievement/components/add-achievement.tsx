@@ -41,6 +41,7 @@ const AddAchievementModal = ({ dataEntity, accessToken, onClose }: Props) => {
       formData.append('award', award)
       formData.append('year', year)
       formData.append('entityId', entityId)
+      formData.append('type', typeParam)
 
       if (imageFile) {
         formData.append('image', imageFile)
