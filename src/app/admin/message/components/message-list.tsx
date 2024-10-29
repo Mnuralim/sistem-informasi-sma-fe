@@ -86,7 +86,9 @@ const MessageList = ({ accessToken, messages }: Props) => {
                 <tr key={message.id} className={`border-b ${message.isRead ? 'bg-white' : 'bg-blue-50 font-semibold'}`}>
                   <td className="px-6 py-4 text-sm text-[#202244]">{message.name}</td>
                   <td className="px-6 py-4 text-sm text-gray-500">{message.email}</td>
-                  <td className="px-6 py-4 text-sm text-gray-500 line-clamp-1">{message.message}</td>
+                  <td className="px-6 py-4 text-sm text-gray-500">
+                    <p className="line-clamp-1">{message.message}</p>
+                  </td>
                   <td className="px-6 py-4 text-sm text-gray-500">{formatDate(message.createdAt)}</td>
 
                   <td className="px-6 py-4 text-sm text-gray-500">
