@@ -87,7 +87,7 @@ const MessageList = ({ accessToken, messages }: Props) => {
                   <td className="px-6 py-4 text-sm text-[#202244]">{message.name}</td>
                   <td className="px-6 py-4 text-sm text-gray-500">{message.email}</td>
                   <td className="px-6 py-4 text-sm text-gray-500 line-clamp-1">{message.message}</td>
-                  <td className="px-6 py-4 text-sm text-gray-500 line-clamp-1">{formatDate(message.createdAt)}</td>
+                  <td className="px-6 py-4 text-sm text-gray-500">{formatDate(message.createdAt)}</td>
 
                   <td className="px-6 py-4 text-sm text-gray-500">
                     <div className="flex gap-2">
