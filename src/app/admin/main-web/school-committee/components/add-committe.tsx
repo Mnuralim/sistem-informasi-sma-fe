@@ -6,6 +6,7 @@ import { toast } from 'react-toastify'
 import { createTeacher } from '@/lib/teacher'
 import { customRevalidation } from '@/actions/custom-revalidation'
 import Modal from '@/app/admin/components/modal'
+import CustomSelect from '@/app/admin/components/custom-select'
 
 interface AddTeacherModalProps {
   accessToken: string
@@ -80,7 +81,7 @@ const AddTeacherModal = ({ accessToken, onClose }: AddTeacherModalProps) => {
 
   return (
     <Modal onClose={onClose}>
-      <h2 className="text-xl font-bold text-[#202244]">Tambah Guru</h2>
+      <h2 className="text-xl font-bold text-[#202244]">Tambah Komite</h2>
       <div className="space-y-4">
         <input
           value={teacherData.teacherName}
@@ -116,6 +117,15 @@ const AddTeacherModal = ({ accessToken, onClose }: AddTeacherModalProps) => {
           type="text"
           placeholder="NIP atau NIP3K"
           className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#EB5437]"
+        />
+        <CustomSelect
+          label="Jenis Kelamin"
+          onChange={(value) => setTeacherData({ ...teacherData, gender: value })}
+          value={teacherData.gender}
+          options={[
+            { id: 'man', name: 'Laki-laki' },
+            { id: 'woman', name: 'Perempuan' },
+          ]}
         />
         <input
           value={teacherData.golongan}
