@@ -46,7 +46,13 @@ const AddStudentAchievementModal = ({ students, accessToken, onClose }: Props) =
         if (!response.ok) {
           throw new Error(resJson.message)
         }
-        customRevalidation(['/admin/main-web/student-achievements', '/admin/main-web/image', '/user', '/user/gallery'])
+        customRevalidation([
+          '/admin/main-web/student-achievement',
+          '/admin/main-web/image',
+          '/user',
+          '/user/gallery',
+          '/user/student-achievement',
+        ])
         toast.success('Prestasi siswa berhasil ditambahkan')
         onClose()
       } catch (error: any) {
