@@ -17,6 +17,7 @@ const AchievementCard: React.FC<AchievementCardProps> = ({ photo, name, position
         height={500}
         src={photo}
         alt={name}
+        draggable={false}
         className="w-32 h-32 rounded-full mb-4 object-cover mx-auto"
       />
       <div className="text-center">

@@ -21,6 +21,7 @@ const BlogCard = ({ id, title, content, author, date, coverImage }: BlogCardProp
         height={500}
         src={coverImage}
         alt={title}
+        draggable={false}
         className="w-full h-48 object-cover rounded-md mb-4"
       />
       <div className="flex flex-col">

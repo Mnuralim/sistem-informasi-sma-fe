@@ -26,6 +26,7 @@ const BlogDetailPage = async ({ params }: Props) => {
             alt={blog.title}
             width={1200}
             height={700}
+            draggable={false}
             className="w-full  object-cover rounded-md mb-6"
           />
           <h1 className="text-3xl font-bold text-[#202244] mb-4">{blog.title}</h1>
