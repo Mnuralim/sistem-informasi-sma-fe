@@ -18,6 +18,10 @@ jobs:
   build-test:
     name: Build and Test the Application
     runs-on: ubuntu-latest
+    env:
+      API_URL: ${{ secrets.API_URL }}
+      AUTH_SECRET: ${{ secrets.AUTH_SECRET }}
+      NEXT_PUBLIC_API_URL: ${{ secrets.NEXT_PUBLIC_API_URL }}
     steps:
       - uses: actions/checkout@v4
       - name: Setup Project
